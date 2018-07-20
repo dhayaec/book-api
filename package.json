@@ -6,11 +6,11 @@
   "scripts": {
     "compile": "tsc --project ./",
     "copy": "copyfiles -u 1 src/**/*.graphql dist",
-    "dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
+    "dev": "npm run gen-types && NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
     "start": "rimraf ./dist && npm run compile && npm run copy && node ./dist/",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "NODE_ENV=test jest --watch",
-    "gen-types": "ts-node --project ./tsconfig.json ./src/scripts/createTypes.ts"
+    "gen-types": "ts-node --files ./src/scripts/createTypes.ts"
   },
   "dependencies": {
     "@gql2ts/from-schema": "^1.8.0",

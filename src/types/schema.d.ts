@@ -23,6 +23,14 @@ column: number;
 interface IQuery {
 __typename: "Query";
 info: string;
+quoteOfTheDay: string;
+random: number;
+rollDice: Array<number> | null;
+}
+
+interface IRollDiceOnQueryArguments {
+numDice: number;
+numSides: number;
 }
 }
 
