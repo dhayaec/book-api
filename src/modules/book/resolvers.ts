@@ -7,12 +7,13 @@ const usersData = {
 
 export const resolvers = {
   Query: {
-    user: async (_ = {}, { id }: GQL.IUserOnQueryArguments) => {
+    user: async (_, args: GQL.IUserOnQueryArguments) => {
+      const { id } = args;
       const user = await usersData.users.find(user => user.id === id);
       return user;
     },
     users: () => usersData.users,
-    welcome: (_ = {}, { yourNickname }: GQL.IWelcomeOnQueryArguments) =>
+    welcome: (_, { yourNickname }: GQL.IWelcomeOnQueryArguments) =>
       `Welcome, ${yourNickname || 'here'}!`
   }
 };
