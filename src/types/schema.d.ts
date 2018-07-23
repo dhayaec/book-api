@@ -22,15 +22,25 @@ column: number;
 
 interface IQuery {
 __typename: "Query";
-info: string;
-quoteOfTheDay: string;
-random: number;
-rollDice: Array<number> | null;
+user: IUser;
+users: Array<IUser>;
+welcome: string;
 }
 
-interface IRollDiceOnQueryArguments {
-numDice: number;
-numSides: number;
+interface IUserOnQueryArguments {
+id: number;
+}
+
+interface IWelcomeOnQueryArguments {
+yourNickname?: string | null;
+}
+
+interface IUser {
+__typename: "User";
+id: number;
+userName: string;
+firstName: string;
+lastName: string;
 }
 }
 

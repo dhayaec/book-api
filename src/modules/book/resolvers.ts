@@ -1,14 +1,18 @@
+const usersData = {
+  users: [
+    { id: 1, userName: 'john', firstName: 'John', lastName: 'Smith' },
+    { id: 2, userName: 'kim', firstName: 'Kimberly', lastName: 'Jones' }
+  ]
+};
+
 export const resolvers = {
   Query: {
-    info: () => `This is the API of a Clone`,
-    quoteOfTheDay: () =>
-      Math.random() < 0.5 ? 'Take it easy' : 'Salvation lies within',
-    random: () => Math.random(),
-    rollDice(args: GQL.IRollDiceOnQueryArguments) {
-      const output = [...Array(args.numDice).keys()];
-      return output.map(
-        () => 1 + Math.floor(Math.random() * (args.numSides || 6))
-      );
-    }
+    user: async (_ = {}, { id }: GQL.IUserOnQueryArguments) => {
+      const user = await usersData.users.find(user => user.id === id);
+      return user;
+    },
+    users: () => usersData.users,
+    welcome: (_ = {}, { yourNickname }: GQL.IWelcomeOnQueryArguments) =>
+      `Welcome, ${yourNickname || 'here'}!`
   }
 };

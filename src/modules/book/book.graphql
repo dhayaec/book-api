@@ -1,6 +1,0 @@
-type Query {
-  info: String!
-  quoteOfTheDay: String!
-  random: Float!
-  rollDice(numDice: Int!, numSides: Int!): [Int]
-}
