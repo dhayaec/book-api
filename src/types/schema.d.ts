@@ -32,7 +32,7 @@ declare namespace GQL {
   }
 
   interface IWelcomeOnQueryArguments {
-    yourNickname?: string | null;
+    yourNickname: string;
   }
 
   interface IUser {

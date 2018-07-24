@@ -11,6 +11,8 @@ describe('utils', () => {
   describe('multiply', () => {
     it('should multiply numbers', () => {
       expect(multiply(5, 5)).toEqual(25);
+      expect(multiply(5)).toEqual(5);
+      expect(multiply(5, 5, 5)).toEqual(125);
     });
   });
 });

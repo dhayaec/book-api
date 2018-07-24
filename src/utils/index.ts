@@ -1,2 +1,2 @@
-export const add = (a = 0, b = 0) => a + b;
-export const multiply = (a = 0, b = 0) => a * b;
+export const add = (...args: number[]) => args.reduce((p, c) => p + c, 0);
+export const multiply = (...args: number[]) => args.reduce((p, c) => p * c, 1);

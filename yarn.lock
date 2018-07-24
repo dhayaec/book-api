@@ -166,6 +166,10 @@
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@gql2ts/util/-/util-1.8.0.tgz#23612425b43ba1a6534e7783137276f4f567a417"
 
+"@types/bluebird@*":
+  version "3.5.22"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.22.tgz#519b87fe3c9d290ca6c06381ffc3040770ab452b"
+
 "@types/body-parser@*":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
@@ -232,6 +236,13 @@
 "@types/graphql@^0.13.0", "@types/graphql@^0.13.3":
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.13.3.tgz#23af65796d341f93ef5b485138bd52c67786452d"
+
+"@types/ioredis@^3.2.13":
+  version "3.2.13"
+  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-3.2.13.tgz#12c929d6e790e6920129d0d3b7dac34ea143373e"
+  dependencies:
+    "@types/bluebird" "*"
+    "@types/node" "*"
 
 "@types/jest@^23.3.0":
   version "23.3.0"
