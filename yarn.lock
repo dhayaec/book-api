@@ -132,39 +132,39 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
-"@gql2ts/from-query@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@gql2ts/from-query/-/from-query-1.8.0.tgz#a5dd66aaba57a4e51a60205352d0562214917313"
+"@gql2ts/from-query@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@gql2ts/from-query/-/from-query-1.8.1.tgz#3799600fb3d69cd01c7680c770ce75745d53a80e"
   dependencies:
-    "@gql2ts/language-typescript" "^1.8.0"
-    "@gql2ts/util" "^1.8.0"
+    "@gql2ts/language-typescript" "^1.8.1"
+    "@gql2ts/util" "^1.8.1"
 
-"@gql2ts/from-schema@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@gql2ts/from-schema/-/from-schema-1.8.0.tgz#12f2b860c0a7948d048e1155845fdba5a2be4a1d"
+"@gql2ts/from-schema@^1.8.0", "@gql2ts/from-schema@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@gql2ts/from-schema/-/from-schema-1.8.1.tgz#642637b0f26bdbb41ea42f16f6a9d873647ace49"
   dependencies:
-    "@gql2ts/language-typescript" "^1.8.0"
-    "@gql2ts/util" "^1.8.0"
+    "@gql2ts/language-typescript" "^1.8.1"
+    "@gql2ts/util" "^1.8.1"
     dedent "^0.7.0"
     graphql ">= 0.10 <1.0.0"
 
-"@gql2ts/language-typescript@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@gql2ts/language-typescript/-/language-typescript-1.8.0.tgz#af61acd14f789c3175198426bef7fbf0a2954a4a"
+"@gql2ts/language-typescript@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@gql2ts/language-typescript/-/language-typescript-1.8.1.tgz#d194a9b6f2023583e6ba738a45ac47529bb2595f"
   dependencies:
-    "@gql2ts/util" "^1.8.0"
+    "@gql2ts/util" "^1.8.1"
     humps "^2.0.0"
     typescript "^2.2.2"
 
 "@gql2ts/types@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@gql2ts/types/-/types-1.8.0.tgz#ee20fa55b157352b4a96ba647c1d3e1c0b0b4184"
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@gql2ts/types/-/types-1.8.1.tgz#7e132abe07d612e53f543a5dc607aa7e2391d160"
   dependencies:
-    "@gql2ts/util" "^1.8.0"
+    "@gql2ts/util" "^1.8.1"
 
-"@gql2ts/util@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@gql2ts/util/-/util-1.8.0.tgz#23612425b43ba1a6534e7783137276f4f567a417"
+"@gql2ts/util@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@gql2ts/util/-/util-1.8.1.tgz#a1260a741084a2232b45daee2b274fb64da332df"
 
 "@types/bluebird@*":
   version "3.5.22"
@@ -554,8 +554,8 @@ aws-lambda@^0.1.2:
     dotenv "^0.4.0"
 
 aws-sdk@^*:
-  version "2.278.1"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.278.1.tgz#eb4c696f53fca381fd8de9b26edd96bdb5c9e859"
+  version "2.279.1"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.279.1.tgz#3a4fd4167932e4361dbdcfcb174ce4840ffcbf20"
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -1872,12 +1872,12 @@ got@^6.7.1:
     url-parse-lax "^1.0.0"
 
 gql2ts@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/gql2ts/-/gql2ts-1.8.0.tgz#45af71a4aa5db0caa20fcb3b10b3c46bdacf321e"
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/gql2ts/-/gql2ts-1.8.1.tgz#b8b37ebaed399eb00c0dbdf9ada11a526e389bc2"
   dependencies:
-    "@gql2ts/from-query" "^1.8.0"
-    "@gql2ts/from-schema" "^1.8.0"
-    "@gql2ts/util" "^1.8.0"
+    "@gql2ts/from-query" "^1.8.1"
+    "@gql2ts/from-schema" "^1.8.1"
+    "@gql2ts/util" "^1.8.1"
     commander "^2.9.0"
     graphql ">= 0.10 <1.0.0"
 
@@ -3434,8 +3434,8 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
 nwsapi@^2.0.0:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.6.tgz#5fb7f5b828b97fe1de47eb2a6f8703036b6cb71a"
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.7.tgz#6fc54c254621f10cac5225b76e81c74120139b78"
 
 oauth-sign@~0.8.2:
   version "0.8.2"
@@ -4419,8 +4419,8 @@ subarg@^1.0.0:
     minimist "^1.1.0"
 
 subscriptions-transport-ws@^0.9.8:
-  version "0.9.12"
-  resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.12.tgz#0deb945134890d8694a93a090bacc6459c4478cc"
+  version "0.9.13"
+  resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.13.tgz#3c09b8ad0c1492c902fca57186bbff48c393b0bf"
   dependencies:
     backo2 "^1.0.2"
     eventemitter3 "^3.1.0"
@@ -4605,8 +4605,8 @@ tslint-config-airbnb@^5.9.2:
     tslint-microsoft-contrib "~5.0.1"
 
 tslint-config-prettier@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/tslint-config-prettier/-/tslint-config-prettier-1.13.0.tgz#189e821931ad89e0364e4e292d5c44a14e90ecd6"
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/tslint-config-prettier/-/tslint-config-prettier-1.14.0.tgz#860b36634e53f4c70c64c51ff3ef7fd9bbab7676"
 
 tslint-consistent-codestyle@^1.10.0:
   version "1.13.2"
@@ -5051,5 +5051,5 @@ zen-observable-ts@^0.8.9:
     zen-observable "^0.8.0"
 
 zen-observable@^0.8.0:
-  version "0.8.8"
-  resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.8.tgz#1ea93995bf098754a58215a1e0a7309e5749ec42"
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.9.tgz#0475c760ff0eda046bbdfa4dc3f95d392807ac53"

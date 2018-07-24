@@ -23,7 +23,12 @@
     "downlevelIteration": true,
     "paths": {
       "*": ["./*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-lit-html-plugin"
+      }
+    ]
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"]
