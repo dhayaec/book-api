@@ -40,8 +40,10 @@ export const renderEmail = ({
   return emailTemplate({ subject, emailContent });
 };
 
+export const paragraphStyle='font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;'
+
 const defaultMessageBody = () => /*html*/ `
-<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+<p style="${paragraphStyle}">
     Sometimes you just want to send a simple HTML email with a simple design and clear call to action. This is it.
 </p>
 <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
@@ -63,10 +65,10 @@ const defaultMessageBody = () => /*html*/ `
         </tr>
     </tbody>
 </table>
-<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+<p style="${paragraphStyle}">
      This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.
 </p>
-<p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+<p style="${paragraphStyle}">
     Good luck! Hope it works.
 </p>
   `;
@@ -94,7 +96,7 @@ const emailContentBody = ({
                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+                        <p style="${paragraphStyle}">
                         ${salutation},
                         </p>
                         ${messageBody}

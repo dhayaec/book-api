@@ -16,5 +16,8 @@
     "node_modules/": true,
     "**/._*": true,
     "dist": true
-  }
+  },
+  "tslint.autoFixOnSave": true,
+  "prettier.eslintIntegration": true,
+  "editor.formatOnSave": true
 }
