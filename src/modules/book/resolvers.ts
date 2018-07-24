@@ -1,3 +1,5 @@
+import { ResolverMap } from '../../types/graphql-utils';
+
 const usersData = {
   users: [
     { id: 1, userName: 'john', firstName: 'John', lastName: 'Smith' },
@@ -5,7 +7,7 @@ const usersData = {
   ]
 };
 
-export const resolvers = {
+export const resolvers: ResolverMap = {
   Query: {
     user: async (_, args: GQL.IUserOnQueryArguments) => {
       const { id } = args;

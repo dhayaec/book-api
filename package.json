@@ -9,19 +9,23 @@
     "dev": "npm run gen-types && NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
     "start": "rimraf ./dist && npm run compile && npm run copy && node ./dist/",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "test": "NODE_ENV=test jest --watch",
+    "test": "NODE_ENV=test jest --watchAll",
     "gen-types": "ts-node --files ./src/scripts/createTypes.ts"
   },
   "dependencies": {
     "@gql2ts/from-schema": "^1.8.0",
+    "express-session": "^1.15.6",
     "glob": "^7.1.2",
     "graphql": "^0.13.0",
     "graphql-tools": "^3.0.5",
     "graphql-yoga": "^1.14.12",
+    "ioredis": "^3.2.2",
     "merge-graphql-schemas": "^1.5.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.54",
     "@gql2ts/types": "^1.8.0",
+    "@types/express-session": "^1.15.10",
     "@types/glob": "^5.0.35",
     "@types/graphql": "^0.13.3",
     "@types/jest": "^23.3.0",

@@ -7,9 +7,10 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch TS",
+      "name": "Launch Program",
       "program": "${workspaceFolder}/dist/index.js",
       "preLaunchTask": "tsc: build - tsconfig.json",
+      "sourceMaps": true,
       "outFiles": ["${workspaceFolder}/dist/**/*.js"]
     }
   ]
