@@ -1,5 +1,16 @@
 {
-  "cSpell.words": ["copyfiles", "fastify", "graphiql"],
+  "cSpell.words": [
+    "antialiased",
+    "cellpadding",
+    "cellspacing",
+    "copyfiles",
+    "fastify",
+    "graphiql",
+    "lspace",
+    "nbsp",
+    "preheader",
+    "rspace"
+  ],
   "files.exclude": {
     "node_modules/": true,
     "**/._*": true,

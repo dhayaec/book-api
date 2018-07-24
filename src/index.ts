@@ -1,5 +1,5 @@
 import { GraphQLServer } from 'graphql-yoga';
-import { genSchema } from './utils/getSchema';
+import { genSchema } from './utils/schema-utils';
 
 const server = new GraphQLServer({
   schema: genSchema()

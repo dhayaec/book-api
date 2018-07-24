@@ -9,7 +9,8 @@
     "dev": "npm run gen-types && NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
     "start": "rimraf ./dist && npm run compile && npm run copy && node ./dist/",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "test": "NODE_ENV=test jest --watchAll",
+    "test": "jest --watchAll",
+    "cover": "jest --coverage",
     "gen-types": "ts-node --files ./src/scripts/createTypes.ts"
   },
   "dependencies": {
@@ -38,25 +39,11 @@
     "jest": "^23.4.1",
     "nodemon": "^1.18.3",
     "rimraf": "^2.6.2",
-    "ts-jest": "^23.0.1",
+    "ts-jest": "22.4.6",
     "ts-node": "^7.0.0",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.9.2",
     "tslint-config-prettier": "^1.13.0",
     "typescript": "^2.9.2"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.ts?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
   }
 }
