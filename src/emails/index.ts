@@ -1,9 +1,3 @@
-type EmailTemplateValues = {
-  header: string;
-  body: string;
-  footer?: string;
-};
-
 export const emailTemplate = (args: EmailTemplateValues) => {
   const { header, footer, body } = args;
   return /*html*/ `
