@@ -54,6 +54,5 @@ export const startServer = async () => {
   const savedPhotos = await photoRepository.find();
 
   console.log('All photos from the db: ', savedPhotos);
-
   server.start(() => console.log('localhost:4000'));
 };
