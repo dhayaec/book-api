@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "coenraads.bracket-pair-colorizer",
+    "streetsidesoftware.code-spell-checker",
+    "peterjausovec.vscode-docker",
+    "hjb2012.vscode-es6-string-html",
+    "esbenp.prettier-vscode",
+    "jpoissonnier.vscode-styled-components"
+  ]
+}

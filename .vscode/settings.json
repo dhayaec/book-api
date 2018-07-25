@@ -14,13 +14,18 @@
     "rspace",
     "typeorm"
   ],
+  "files.autoSave": "afterDelay",
+  "editor.fontSize": 14,
+  "git.autofetch": true,
+  "eslint.autoFixOnSave": true,
   "files.exclude": {
     "node_modules/": true,
     "**/._*": true,
     "dist": true
   },
-  "prettier.eslintIntegration": true,
-  "eslint.autoFixOnSave": true,
+  "prettier.singleQuote": true,
+  "workbench.editor.enablePreview": false,
+  "editor.formatOnSave": true,
   "tslint.autoFixOnSave": true,
   "typescript.updateImportsOnFileMove.enabled": "always"
 }
