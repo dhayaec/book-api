@@ -106,10 +106,10 @@ const emailContentBody = ({
 <table border="0" cellpadding="0" cellspacing="0" class="body" style="${tableStyle} background-color: #f6f6f6;">
       <tr>
       ${defaultSpacer()}
-        <td class="container" style="${fontStyle} display: block; Margin: 0 auto; max-width: 580px; 
-        padding: 10px; width: 580px;">
+        <td class="container" style="${fontStyle} display: block; Margin: 0 auto; max-width: 680px; 
+        padding: 10px; width: 680px;">
           <div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; 
-          max-width: 580px; padding: 10px;">
+          max-width: 680px; padding: 10px;">
             <!-- START CENTERED WHITE CONTAINER -->
             <span class="preheader" 
 

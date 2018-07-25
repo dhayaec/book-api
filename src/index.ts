@@ -6,8 +6,7 @@ const server = new GraphQLServer({
   schema: genSchema()
 });
 
-server.express.get('/test-email', (req, res) => {
-  console.log(req.body);
+server.express.get('/test-email', (_, res) => {
   const random = Math.random().toString();
   const email = renderEmail({
     subject: random,
