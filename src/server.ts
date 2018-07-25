@@ -1,16 +1,16 @@
-import { GraphQLServer } from 'graphql-yoga';
-import * as Redis from 'ioredis';
-import * as session from 'express-session';
 import * as connectRedis from 'connect-redis';
 import * as RateLimit from 'express-rate-limit';
-import * as RateLimitRedisStore from 'rate-limit-redis';
+import * as session from 'express-session';
+import { GraphQLServer } from 'graphql-yoga';
 import * as helmet from 'helmet';
-import { genSchema } from './utils/schema-utils';
+import * as Redis from 'ioredis';
+import * as RateLimitRedisStore from 'rate-limit-redis';
 import { redisSessionPrefix, SESSION_SECRET } from './constants';
 import { testEmail } from './routes/email';
+import { genSchema } from './utils/schema-utils';
 
 export const startServer = async () => {
-  const redisStore = connectRedis(session as any);
+  const redisStore = connectRedis(session);
 
   const redis = new Redis();
 
@@ -52,7 +52,7 @@ export const startServer = async () => {
         secure: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
       }
-    } as any)
+    })
   );
 
   server.express.get('/test-email', testEmail);

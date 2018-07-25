@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as glob from 'glob';
-import * as path from 'path';
 import { makeExecutableSchema } from 'graphql-tools';
 import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
+import * as path from 'path';
 
 export function genSchema() {
   const pathToModules = path.join(__dirname, '../modules');
