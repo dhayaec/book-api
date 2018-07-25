@@ -1,14 +1,19 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint-config-airbnb", "tslint-config-prettier"],
+  "extends": ["tslint-eslint-rules", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
     "no-console": false,
     "member-access": false,
     "object-literal-sort-keys": false,
-    "ordered-imports": false,
+    "ordered-imports": true,
     "interface-name": false,
-    "no-submodule-imports": false
+    "no-submodule-imports": false,
+    "no-boolean-literal-compare": false,
+    "import-spacing": true,
+    "prefer-object-spread": true,
+    "space-within-parens": true,
+    "object-curly-spacing": true
   },
   "rulesDirectory": []
 }

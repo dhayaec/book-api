@@ -1,4 +1,4 @@
-import { renderEmail, paragraphStyle } from './emails';
+import { paragraphStyle, renderEmail } from './emails';
 
 describe('email', () => {
   describe('renderEmail', () => {

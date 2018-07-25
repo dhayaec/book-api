@@ -4,13 +4,16 @@
     "cellpadding",
     "cellspacing",
     "copyfiles",
+    "ecmascript",
     "fastify",
     "gitignore",
     "graphiql",
     "lspace",
     "mariadb",
     "nbsp",
+    "precommit",
     "preheader",
+    "proviced",
     "resave",
     "rspace",
     "typeorm"
@@ -26,7 +29,10 @@
   },
   "prettier.singleQuote": true,
   "workbench.editor.enablePreview": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "tslint.autoFixOnSave": true,
+  "javascript.validate.enable": false,
+  "javascript.format.enable": false,
+  "prettier.eslintIntegration": true,
   "typescript.updateImportsOnFileMove.enabled": "always"
 }

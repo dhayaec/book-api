@@ -1,18 +1,18 @@
-type EmailTemplate = {
+interface EmailTemplate {
   subject: string;
   emailContent: string;
-};
+}
 
-type EmailContent = {
+interface EmailContent {
   subject: string;
   salutation: string;
   messageBody: string;
   footer?: string;
-};
+}
 
-type EmailRendererProps = {
+interface EmailRendererProps {
   subject: string;
   salutation?: string;
   message: string;
   footer?: string;
-};
+}

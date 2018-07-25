@@ -8,7 +8,7 @@
     "copy": "copyfiles -u 1 src/**/*.graphql dist",
     "dev": "npm run gen-types && NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
     "start": "rimraf ./dist && npm run compile && npm run copy && node ./dist/",
-    "lint": "tslint -c tslint.json 'src/**/*.ts' --fix",
+    "lint": "tslint --project ./ -c tslint.json 'src/**/*.ts' --fix",
     "test": "jest --watchAll",
     "cover": "jest --coverage",
     "gen-types": "ts-node --files ./src/utils/createTypes.ts",
@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "tslint -c tslint.json 'src/**/*.ts' --fix",
+      "npm run lint",
       "git add"
     ]
   },
@@ -25,6 +25,7 @@
     "@types/connect-redis": "^0.0.7",
     "@types/express-rate-limit": "^2.9.3",
     "connect-redis": "^3.3.3",
+    "express": "^4.16.3",
     "express-rate-limit": "^2.11.0",
     "express-session": "^1.15.6",
     "glob": "^7.1.2",
@@ -61,7 +62,8 @@
     "ts-node": "^7.0.0",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.9.2",
-    "tslint-config-prettier": "^1.13.0",
+    "tslint-config-prettier": "^1.14.0",
+    "tslint-eslint-rules": "^5.3.1",
     "typescript": "^2.9.2"
   }
 }

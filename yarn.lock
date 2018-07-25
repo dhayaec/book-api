@@ -5350,7 +5350,7 @@ tslint-config-airbnb@^5.9.2:
     tslint-eslint-rules "^5.3.1"
     tslint-microsoft-contrib "~5.0.1"
 
-tslint-config-prettier@^1.13.0:
+tslint-config-prettier@^1.14.0:
   version "1.14.0"
   resolved "https://registry.yarnpkg.com/tslint-config-prettier/-/tslint-config-prettier-1.14.0.tgz#860b36634e53f4c70c64c51ff3ef7fd9bbab7676"
 
@@ -5399,9 +5399,15 @@ tsutils@2.8.0:
   dependencies:
     tslib "^1.7.1"
 
-tsutils@^2.12.1, tsutils@^2.24.0, tsutils@^2.27.0, tsutils@^2.27.2:
+tsutils@^2.12.1, tsutils@^2.24.0, tsutils@^2.27.0:
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.28.0.tgz#6bd71e160828f9d019b6f4e844742228f85169a1"
+  dependencies:
+    tslib "^1.8.1"
+
+tsutils@^2.27.2:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.29.0.tgz#32b488501467acbedd4b85498673a0812aca0b99"
   dependencies:
     tslib "^1.8.1"
 

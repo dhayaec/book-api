@@ -1,19 +1,16 @@
-import { Request, Response } from 'express';
+import {Request, Response } from 'express';
 import { renderEmail } from '../utils/emails/emails';
 
 export const testEmail = async (req: Request, res: Response) => {
-  
   !req.session!.views ? (req.session!.views = 1) : (req.session!.views += 1);
 
   const random = Math.random().toString();
   const email = renderEmail({
     subject: random,
     message:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. ' +
-      'Ipsum cum distinctio temporibus error, nulla molestiae id est ' +
-      'laudantium tempore eos ut sunt sed magnam incidunt porro necessitatibus' +
-      'beatae! Eius, magni!',
-    salutation: 'Hello dude you have ' + req.session!.views + ' views!'
+      'This is an example email message. This email system uses ' +
+      'native template literal syntax proviced by ecmascript 6 ',
+    salutation: 'Hello dude you have ' + req.session!.views + ' views!',
   });
   res.send(email);
 };
