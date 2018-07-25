@@ -11,7 +11,7 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts' --fix",
     "test": "jest --watchAll",
     "cover": "jest --coverage",
-    "gen-types": "ts-node --files ./src/scripts/createTypes.ts",
+    "gen-types": "ts-node --files ./src/utils/createTypes.ts",
     "precommit": "lint-staged"
   },
   "lint-staged": {
