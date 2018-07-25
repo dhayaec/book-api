@@ -8,16 +8,19 @@
     "gitignore",
     "graphiql",
     "lspace",
+    "mariadb",
     "nbsp",
     "preheader",
-    "rspace"
+    "rspace",
+    "typeorm"
   ],
   "files.exclude": {
     "node_modules/": true,
     "**/._*": true,
     "dist": true
   },
-  "tslint.autoFixOnSave": true,
   "prettier.eslintIntegration": true,
-  "editor.formatOnSave": true
+  "eslint.autoFixOnSave": true,
+  "tslint.autoFixOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }
