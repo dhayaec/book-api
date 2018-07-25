@@ -1,7 +1,7 @@
 import { GraphQLServer } from 'graphql-yoga';
 import { genSchema } from './utils/schema-utils';
 import { renderEmail } from './utils/emails/emails';
-import { createConnection } from 'typeorm';
+import { db } from './utils/connection';
 import { Photo } from './entity/Photo';
 
 const server = new GraphQLServer({
@@ -32,40 +32,21 @@ const startServer = async () => {
     })
   });
 
-  try {
-    const connection = await createConnection({
-      name: 'default',
-      type: 'mariadb',
-      host: 'localhost',
-      port: 3307,
-      username: 'test',
-      password: 'test',
-      database: 'test',
-      entities: [Photo],
-      synchronize: true
-    });
-    const photo = new Photo();
-    photo.name = 'Me and Bears';
-    photo.description = 'I am near polar bears';
-    photo.filename = 'photo-with-bears.jpg';
-    photo.views = 1;
-    photo.isPublished = true;
+  const photo = new Photo();
+  photo.name = 'Me and Bears';
+  photo.description = 'I am near polar bears';
+  photo.filename = 'photo-with-bears.jpg';
+  photo.views = 1;
+  photo.isPublished = true;
 
-    const photoRepository = connection.getRepository(Photo);
+  const connection = await db();
 
-    await photoRepository.save(photo);
-    console.log('Photo has been saved');
+  const photoRepository = connection.getRepository(Photo);
 
-    const savedPhotos = await photoRepository.find();
-    console.log('All photos from the db: ', savedPhotos);
+  const savedPhotos = await photoRepository.find();
+  console.log('All photos from the db: ', savedPhotos);
 
-    const meAndBearsPhoto = await photoRepository.findOne({
-      name: 'Me and Bears'
-    });
-    console.log('Me and Bears photo from the db: ', meAndBearsPhoto);
-  } catch (error) {
-    console.log(error);
-  }
+  photoRepository.delete([1, 2, 3, 4]);
 
   server.start(() => console.log('localhost:4000'));
 };
