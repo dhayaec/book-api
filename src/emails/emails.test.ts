@@ -1,4 +1,4 @@
-import {renderEmail, paragraphStyle} from './emails';
+import { renderEmail, paragraphStyle } from './emails';
 
 describe('email', () => {
   describe('renderEmail', () => {
@@ -7,10 +7,12 @@ describe('email', () => {
       const email = renderEmail({
         subject: random,
         message: 'message' + random,
+        salutation: 'Hello dude'
       });
       expect(email).toContain(paragraphStyle);
       expect(email).toContain(random);
       expect(email).toContain('message' + random);
+      expect(email).toContain('Hello dude,');
     });
   });
 });
