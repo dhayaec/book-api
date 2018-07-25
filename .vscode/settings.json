@@ -11,6 +11,7 @@
     "mariadb",
     "nbsp",
     "preheader",
+    "resave",
     "rspace",
     "typeorm"
   ],

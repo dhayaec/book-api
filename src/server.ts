@@ -1,58 +1,61 @@
 import { GraphQLServer } from 'graphql-yoga';
+import * as Redis from 'ioredis';
+import * as session from 'express-session';
+import * as connectRedis from 'connect-redis';
+import * as RateLimit from 'express-rate-limit';
+import * as RateLimitRedisStore from 'rate-limit-redis';
+import * as helmet from 'helmet';
 import { genSchema } from './utils/schema-utils';
-import { renderEmail } from './utils/emails/emails';
-import { db } from './utils/connection';
-import { Photo } from './entity/Photo';
-
-process.on('unhandledRejection', err => {
-  console.log(err);
-});
-
-process.on('uncaughtException', err => {
-  console.log(err);
-});
-
-const server = new GraphQLServer({
-  schema: genSchema()
-});
-
-server.express.get('/test-email', (_, res) => {
-  const random = Math.random().toString();
-  const email = renderEmail({
-    subject: random,
-    message:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. ' +
-      'Ipsum cum distinctio temporibus error, nulla molestiae id est ' +
-      'laudantium tempore eos ut sunt sed magnam incidunt porro necessitatibus' +
-      'beatae! Eius, magni!',
-    salutation: 'Hello dude'
-  });
-  res.send(email);
-});
+import { redisSessionPrefix, SESSION_SECRET } from './constants';
+import { testEmail } from './routes/email';
 
 export const startServer = async () => {
+  const redisStore = connectRedis(session as any);
+
+  const redis = new Redis();
+
   const server = new GraphQLServer({
     schema: genSchema(),
     context: ({ request }) => ({
+      redis,
       url: request.protocol + '://' + request.get('host'),
       session: request.session,
       req: request
     })
   });
 
-  const photo = new Photo();
-  photo.name = 'Me and Bears';
-  photo.description = 'I am near polar bears';
-  photo.filename = 'photo-with-bears.jpg';
-  photo.views = 1;
-  photo.isPublished = true;
+  server.express.use(helmet());
 
-  const connection = await db();
+  server.express.use(
+    new RateLimit({
+      store: new RateLimitRedisStore({
+        client: redis
+      }),
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100, // limit each IP to 100 requests per windowMs
+      delayMs: 0 // disable delaying - full speed until the max limit is reached
+    })
+  );
 
-  const photoRepository = connection.getRepository(Photo);
+  server.express.use(
+    session({
+      store: new redisStore({
+        client: redis as any,
+        prefix: redisSessionPrefix
+      }),
+      name: 'qid',
+      secret: SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+      }
+    } as any)
+  );
 
-  const savedPhotos = await photoRepository.find();
+  server.express.get('/test-email', testEmail);
 
-  console.log('All photos from the db: ', savedPhotos);
   server.start(() => console.log('localhost:4000'));
 };
