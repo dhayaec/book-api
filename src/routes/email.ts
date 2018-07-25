@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
 import { renderEmail } from '../utils/emails/emails';
 
-export const testEmail = async (_: Request, res: Response) => {
+export const testEmail = async (req: Request, res: Response) => {
+  
+  !req.session!.views ? (req.session!.views = 1) : (req.session!.views += 1);
+
   const random = Math.random().toString();
   const email = renderEmail({
     subject: random,
@@ -10,7 +13,7 @@ export const testEmail = async (_: Request, res: Response) => {
       'Ipsum cum distinctio temporibus error, nulla molestiae id est ' +
       'laudantium tempore eos ut sunt sed magnam incidunt porro necessitatibus' +
       'beatae! Eius, magni!',
-    salutation: 'Hello dude'
+    salutation: 'Hello dude you have ' + req.session!.views + ' views!'
   });
   res.send(email);
 };
