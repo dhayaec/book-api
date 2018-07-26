@@ -1,8 +1,7 @@
 module.exports = {
   verbose: true,
   rootDir: './',
-  // moduleFileExtensions: ['ts', 'tsx', 'js'], // un comment for coverage
-  moduleFileExtensions: ['js'],
+  moduleFileExtensions: ['ts', 'tsx', 'js'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },

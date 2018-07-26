@@ -15,7 +15,10 @@ describe('server', () => {
 
   it('should start', async () => {
     const { port } = server.address() as AddressInfo;
-    const { status } = await axios.get('http://localhost:' + port + '/ping');
+    const { status, data } = await axios.get(
+      'http://localhost:' + port + '/ping'
+    );
     expect(status).toEqual(200);
+    expect(data).toEqual({ message: 'pong' });
   });
 });
