@@ -2,8 +2,9 @@ import { Request, Response } from 'express';
 import { renderEmail } from '../utils/emails/emails';
 
 export const testEmail = async (req: Request, res: Response) => {
-  
-  !req.session!.views ? (req.session!.views = 1) : (req.session!.views += 1);
+  const { session } = req;
+
+  !session!.views ? (session!.views = 1) : (session!.views += 1);
 
   const random = Math.random().toString();
   const email = renderEmail({

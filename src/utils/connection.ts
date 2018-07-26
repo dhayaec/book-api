@@ -1,5 +1,6 @@
 import { createConnection } from 'typeorm';
 import { Photo } from '../entity/Photo';
+import { User } from '../entity/User';
 
 export const db = async () => {
   const connection = await createConnection({
@@ -10,7 +11,7 @@ export const db = async () => {
     username: 'test',
     password: 'test',
     database: 'test',
-    entities: [Photo],
+    entities: [User, Photo],
     synchronize: true
   });
 

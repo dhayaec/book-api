@@ -13,7 +13,8 @@
     "preheader",
     "resave",
     "rspace",
-    "typeorm"
+    "typeorm",
+    "varchar"
   ],
   "files.autoSave": "afterDelay",
   "editor.fontSize": 14,

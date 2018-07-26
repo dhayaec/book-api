@@ -8,8 +8,10 @@ import * as RateLimitRedisStore from 'rate-limit-redis';
 import { redisSessionPrefix, SESSION_SECRET } from './constants';
 import { testEmail } from './routes/email';
 import { genSchema } from './utils/schema-utils';
+import { User } from './entity/User';
+import { db } from './utils/connection';
 
-export const startServer = async () => {
+export async function startServer() {
   const redisStore = connectRedis(session);
 
   const redis = new Redis();
@@ -55,7 +57,33 @@ export const startServer = async () => {
     })
   );
 
+  const connection = await db();
+
+  const user = new User();
+  user.email = 'mmurali47566@gmail.com';
+  user.password = '123456';
+  user.mobile = '9445725619';
+
+  const userRepository = connection.getRepository(User);
+  const { email } = user;
+  const existingUser = await userRepository.findOne({ email });
+
+  if (!existingUser) {
+    try {
+      await userRepository.save(user);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    const username = existingUser.email.split('@')[0];
+    !existingUser.username &&
+      (await userRepository.update({ id: existingUser.id }, { username }));
+  }
+  server.express.get('/ping', (_, res) => res.json({ message: 'pong' }));
   server.express.get('/test-email', testEmail);
 
-  server.start(() => console.log('localhost:4000'));
-};
+  return server.start(
+    { port: process.env.NODE_ENV === 'test' ? 4001 : 4000 },
+    ({ port }) => console.log('localhost:' + port)
+  );
+}
