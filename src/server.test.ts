@@ -1,6 +1,6 @@
-import { startServer } from './server';
-import { Server } from 'net';
 import axios from 'axios';
+import { Server } from 'net';
+import { startServer } from './server';
 
 let server: Server;
 describe('server', () => {

@@ -28,7 +28,7 @@
   "files.exclude": {
     "node_modules/": true,
     "**/._*": true,
-    "dist": true
+    "dist": false
   },
   "prettier.singleQuote": true,
   "workbench.editor.enablePreview": false,

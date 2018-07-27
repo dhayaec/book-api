@@ -1,16 +1,16 @@
+import * as bcrypt from 'bcryptjs';
 import {
   BaseEntity,
   BeforeInsert,
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  VersionColumn,
-  UpdateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
   Unique,
-  OneToMany
+  UpdateDateColumn,
+  VersionColumn
 } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
 import { Photo } from './Photo';
 
 @Entity('users')

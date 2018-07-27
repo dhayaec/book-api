@@ -1,4 +1,4 @@
-import {Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { renderEmail } from '../utils/emails/emails';
 
 export const testEmail = async (req: Request, res: Response) => {

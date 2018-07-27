@@ -3,13 +3,13 @@ import * as yup from 'yup';
 import { forgotPasswordPrefix } from '../../constants';
 import { User } from '../../entity/User';
 import { ResolverMap } from '../../types/graphql-utils';
-import { registerPasswordValidation } from './register.resolver';
+import { keyExpired, userNotFound } from '../../utils/messages';
 import {
-  forgotPasswordLockAccount,
   createForgotPasswordLink,
+  forgotPasswordLockAccount,
   formatYupError
 } from '../../utils/userUtils';
-import { userNotFound, keyExpired } from '../../utils/messages';
+import { registerPasswordValidation } from './register.resolver';
 
 const schema = yup.object().shape({
   newPassword: registerPasswordValidation
