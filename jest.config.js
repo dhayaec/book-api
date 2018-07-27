@@ -8,6 +8,7 @@ module.exports = {
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
   collectCoverage: true,
+  testEnvironment: 'node',
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!src/types/**/*.{ts,tsx}',

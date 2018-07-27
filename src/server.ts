@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+require('dotenv-safe').config();
 import * as connectRedis from 'connect-redis';
 import * as RateLimit from 'express-rate-limit';
 import * as session from 'express-session';
@@ -5,11 +7,15 @@ import { GraphQLServer } from 'graphql-yoga';
 import * as helmet from 'helmet';
 import * as Redis from 'ioredis';
 import * as RateLimitRedisStore from 'rate-limit-redis';
-import { redisSessionPrefix, SESSION_SECRET } from './constants';
+import { redisSessionPrefix } from './constants';
 import { testEmail } from './routes/email';
 import { genSchema } from './utils/schema-utils';
+import { User } from './entity/User';
+import { db, dbTest } from './connection';
 
-export const startServer = async () => {
+const { SESSION_SECRET, NODE_ENV } = process.env;
+
+export async function startServer() {
   const redisStore = connectRedis(session);
 
   const redis = new Redis();
@@ -44,18 +50,49 @@ export const startServer = async () => {
         prefix: redisSessionPrefix
       }),
       name: 'qid',
-      secret: SESSION_SECRET,
+      secret: SESSION_SECRET as string,
       resave: false,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
       }
     })
   );
 
+  if (NODE_ENV === 'test') {
+    await dbTest(true);
+  } else {
+    const connection = await db();
+    await connection.runMigrations();
+
+    const user = new User();
+    user.email = 'dhayaec@gmail.com';
+    user.password = '123456';
+    user.mobile = '9445725619';
+
+    const userRepository = connection.getRepository(User);
+    const { email } = user;
+    const existingUser = await userRepository.findOne({ email });
+
+    if (!existingUser) {
+      try {
+        await userRepository.save(user);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      const username = existingUser.email.split('@')[0];
+      !existingUser.username &&
+        (await userRepository.update({ id: existingUser.id }, { username }));
+    }
+  }
+
+  server.express.get('/ping', (_, res) => res.json({ message: 'pong' }));
   server.express.get('/test-email', testEmail);
 
-  server.start(() => console.log('localhost:4000'));
-};
+  return server.start({ port: NODE_ENV === 'test' ? 4001 : 4000 }, ({ port }) =>
+    console.log('localhost:' + port)
+  );
+}

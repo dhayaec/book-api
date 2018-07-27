@@ -3,7 +3,7 @@
 
 declare namespace GQL {
 interface IGraphQLResponseRoot {
-data?: IQuery;
+data?: IQuery | IMutation;
 errors?: Array<IGraphQLResponseError>;
 }
 
@@ -22,25 +22,47 @@ column: number;
 
 interface IQuery {
 __typename: "Query";
-user: IUser;
-users: Array<IUser>;
-welcome: string;
-}
-
-interface IUserOnQueryArguments {
-id: number;
-}
-
-interface IWelcomeOnQueryArguments {
-yourNickname: string;
+me: IUser | null;
 }
 
 interface IUser {
 __typename: "User";
-id: number;
-userName: string;
-firstName: string;
-lastName: string;
+id: string;
+email: string;
+}
+
+interface IMutation {
+__typename: "Mutation";
+register: Array<IError>;
+sendForgotPasswordEmail: boolean | null;
+forgotPasswordChange: Array<IError>;
+login: Array<IError>;
+logout: boolean | null;
+}
+
+interface IRegisterOnMutationArguments {
+email: string;
+password: string;
+}
+
+interface ISendForgotPasswordEmailOnMutationArguments {
+email: string;
+}
+
+interface IForgotPasswordChangeOnMutationArguments {
+newPassword: string;
+key: string;
+}
+
+interface ILoginOnMutationArguments {
+email: string;
+password: string;
+}
+
+interface IError {
+__typename: "Error";
+path: string;
+message: string;
 }
 }
 
