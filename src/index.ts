@@ -1,3 +1,5 @@
+require('dotenv-safe').config();
+
 import { startServer } from './server';
 
 process.on('unhandledRejection', err => {

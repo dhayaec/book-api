@@ -1,19 +1,35 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { User } from './User';
 
 @Entity()
 export class Photo {
-  @PrimaryGeneratedColumn() id: number;
+  @PrimaryGeneratedColumn('uuid') id: number;
 
   @Column({
     length: 100
   })
   name: string;
 
-  @Column('text') description: string;
+  @Column('text', { default: '' })
+  description: string;
 
   @Column() filename: string;
 
-  @Column('double') views: number;
+  @Column('varchar', { default: '', length: 6 })
+  dominantColor: string;
 
-  @Column() isPublished: boolean;
+  @Column('double', { default: 0 })
+  views: number;
+
+  @Column({ default: true })
+  isPublished: boolean;
+
+  @Column({ default: false })
+  isBanned: boolean;
+
+  @Column({ default: false })
+  deleted: boolean;
+
+  @ManyToOne(() => User, user => user.photos)
+  user: User;
 }

@@ -5,12 +5,13 @@ import { GraphQLServer } from 'graphql-yoga';
 import * as helmet from 'helmet';
 import * as Redis from 'ioredis';
 import * as RateLimitRedisStore from 'rate-limit-redis';
-import { redisSessionPrefix, SESSION_SECRET } from './constants';
+import { redisSessionPrefix } from './constants';
 import { testEmail } from './routes/email';
 import { genSchema } from './utils/schema-utils';
 import { User } from './entity/User';
 import { db } from './utils/connection';
-import { Photo } from './entity/Photo';
+
+const { SESSION_SECRET, NODE_ENV } = process.env;
 
 export async function startServer() {
   const redisStore = connectRedis(session);
@@ -47,21 +48,22 @@ export async function startServer() {
         prefix: redisSessionPrefix
       }),
       name: 'qid',
-      secret: SESSION_SECRET,
+      secret: SESSION_SECRET as string,
       resave: false,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
       }
     })
   );
 
   const connection = await db();
+  await connection.runMigrations();
 
   const user = new User();
-  user.email = 'dhaya04@gmail.com';
+  user.email = 'dhayaec@gmail.com';
   user.password = '123456';
   user.mobile = '9445725619';
 
@@ -81,23 +83,10 @@ export async function startServer() {
       (await userRepository.update({ id: existingUser.id }, { username }));
   }
 
-  const photo1 = new Photo();
-  photo1.filename = 'me.jpg';
-  photo1.name = photo1.filename;
-  photo1.user = user;
-  await connection.manager.save(photo1);
-
-  const photo2 = new Photo();
-  photo2.filename = 'me-and-bears.jpg';
-  photo2.name = photo2.filename;
-  photo2.user = user;
-  await connection.manager.save(photo2);
-
   server.express.get('/ping', (_, res) => res.json({ message: 'pong' }));
   server.express.get('/test-email', testEmail);
 
-  return server.start(
-    { port: process.env.NODE_ENV === 'test' ? 4001 : 4000 },
-    ({ port }) => console.log('localhost:' + port)
+  return server.start({ port: NODE_ENV === 'test' ? 4001 : 4000 }, ({ port }) =>
+    console.log('localhost:' + port)
   );
 }

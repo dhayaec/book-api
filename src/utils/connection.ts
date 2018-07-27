@@ -5,6 +5,6 @@ export const db = async () => {
   return createConnection({
     ...connectionOptions,
     name: 'default',
-    synchronize: true
+    synchronize: false
   });
 };
