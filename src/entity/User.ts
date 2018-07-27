@@ -24,7 +24,7 @@ export class User extends BaseEntity {
   @Column({ length: 20, default: '' })
   username: string;
 
-  @Column({ length: 15 })
+  @Column({ length: 15, default: '' })
   mobile: string;
 
   @Column('text') password: string;

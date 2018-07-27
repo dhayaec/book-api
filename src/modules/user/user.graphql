@@ -1,0 +1,21 @@
+type Query {
+  me: User
+}
+
+type Mutation {
+  register(email: String!, password: String!): [Error!]
+  sendForgotPasswordEmail(email: String!): Boolean
+  forgotPasswordChange(newPassword: String!, key: String!): [Error!]
+  login(email: String!, password: String!): [Error!]
+  logout: Boolean
+}
+
+type Error {
+  path: String!
+  message: String!
+}
+
+type User {
+  id: ID!
+  email: String!
+}

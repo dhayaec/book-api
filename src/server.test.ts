@@ -1,7 +1,6 @@
-import { startServer } from '../server';
+import { startServer } from './server';
 import { Server } from 'net';
 import axios from 'axios';
-import { AddressInfo } from 'ws';
 
 let server: Server;
 describe('server', () => {
@@ -14,9 +13,8 @@ describe('server', () => {
   });
 
   it('should start', async () => {
-    const { port } = server.address() as AddressInfo;
     const { status, data } = await axios.get(
-      'http://localhost:' + port + '/ping'
+      'http://localhost:' + 4001 + '/ping'
     );
     expect(status).toEqual(200);
     expect(data).toEqual({ message: 'pong' });

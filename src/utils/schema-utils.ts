@@ -10,7 +10,7 @@ export function genSchema() {
   const paths = glob.sync(`${pathToModules}/**/*.graphql`);
   const graphqlTypes = paths.map(x => fs.readFileSync(x, { encoding: 'utf8' }));
   const resolversList = glob
-    .sync(`${pathToModules}/**/resolvers.?s`)
+    .sync(`${pathToModules}/**/**.resolver.?s`)
     .map(resolver => require(resolver).resolvers);
 
   return makeExecutableSchema({

@@ -10,7 +10,7 @@ import { redisSessionPrefix } from './constants';
 import { testEmail } from './routes/email';
 import { genSchema } from './utils/schema-utils';
 import { User } from './entity/User';
-import { db } from './utils/connection';
+import { db, dbTest } from './connection';
 
 const { SESSION_SECRET, NODE_ENV } = process.env;
 
@@ -60,31 +60,32 @@ export async function startServer() {
     })
   );
 
-  const connection = await db();
-
-  if (NODE_ENV !== 'test') {
-    await connection.runMigrations();
-  }
-
-  const user = new User();
-  user.email = 'dhayaec@gmail.com';
-  user.password = '123456';
-  user.mobile = '9445725619';
-
-  const userRepository = connection.getRepository(User);
-  const { email } = user;
-  const existingUser = await userRepository.findOne({ email });
-
-  if (!existingUser) {
-    try {
-      await userRepository.save(user);
-    } catch (error) {
-      console.log(error);
-    }
+  if (NODE_ENV === 'test') {
+    await dbTest(true);
   } else {
-    const username = existingUser.email.split('@')[0];
-    !existingUser.username &&
-      (await userRepository.update({ id: existingUser.id }, { username }));
+    const connection = await db();
+    await connection.runMigrations();
+
+    const user = new User();
+    user.email = 'dhayaec@gmail.com';
+    user.password = '123456';
+    user.mobile = '9445725619';
+
+    const userRepository = connection.getRepository(User);
+    const { email } = user;
+    const existingUser = await userRepository.findOne({ email });
+
+    if (!existingUser) {
+      try {
+        await userRepository.save(user);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      const username = existingUser.email.split('@')[0];
+      !existingUser.username &&
+        (await userRepository.update({ id: existingUser.id }, { username }));
+    }
   }
 
   server.express.get('/ping', (_, res) => res.json({ message: 'pong' }));
