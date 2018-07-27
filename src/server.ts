@@ -1,3 +1,4 @@
+require('dotenv-safe').config();
 import * as connectRedis from 'connect-redis';
 import * as RateLimit from 'express-rate-limit';
 import * as session from 'express-session';
@@ -60,7 +61,10 @@ export async function startServer() {
   );
 
   const connection = await db();
-  await connection.runMigrations();
+
+  if (NODE_ENV !== 'test') {
+    await connection.runMigrations();
+  }
 
   const user = new User();
   user.email = 'dhayaec@gmail.com';
