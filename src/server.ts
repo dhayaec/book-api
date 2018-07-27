@@ -10,6 +10,7 @@ import { testEmail } from './routes/email';
 import { genSchema } from './utils/schema-utils';
 import { User } from './entity/User';
 import { db } from './utils/connection';
+import { Photo } from './entity/Photo';
 
 export async function startServer() {
   const redisStore = connectRedis(session);
@@ -60,7 +61,7 @@ export async function startServer() {
   const connection = await db();
 
   const user = new User();
-  user.email = 'mmurali47566@gmail.com';
+  user.email = 'dhaya04@gmail.com';
   user.password = '123456';
   user.mobile = '9445725619';
 
@@ -79,6 +80,19 @@ export async function startServer() {
     !existingUser.username &&
       (await userRepository.update({ id: existingUser.id }, { username }));
   }
+
+  const photo1 = new Photo();
+  photo1.filename = 'me.jpg';
+  photo1.name = photo1.filename;
+  photo1.user = user;
+  await connection.manager.save(photo1);
+
+  const photo2 = new Photo();
+  photo2.filename = 'me-and-bears.jpg';
+  photo2.name = photo2.filename;
+  photo2.user = user;
+  await connection.manager.save(photo2);
+
   server.express.get('/ping', (_, res) => res.json({ message: 'pong' }));
   server.express.get('/test-email', testEmail);
 

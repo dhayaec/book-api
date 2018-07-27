@@ -1,19 +1,10 @@
-import { createConnection } from 'typeorm';
-import { Photo } from '../entity/Photo';
-import { User } from '../entity/User';
+import { createConnection, getConnectionOptions } from 'typeorm';
 
 export const db = async () => {
-  const connection = await createConnection({
+  const connectionOptions = await getConnectionOptions();
+  return createConnection({
+    ...connectionOptions,
     name: 'default',
-    type: 'mariadb',
-    host: 'localhost',
-    port: 3307,
-    username: 'test',
-    password: 'test',
-    database: 'test',
-    entities: [User, Photo],
     synchronize: true
   });
-
-  return connection;
 };

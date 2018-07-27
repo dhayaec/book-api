@@ -7,9 +7,11 @@ import {
   CreateDateColumn,
   VersionColumn,
   UpdateDateColumn,
-  Unique
+  Unique,
+  OneToMany
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
+import { Photo } from './Photo';
 
 @Entity('users')
 @Unique(['email'])
@@ -37,9 +39,15 @@ export class User extends BaseEntity {
   @Column({ default: false })
   forgotPasswordLocked: boolean;
 
+  @Column({ default: false })
+  isBanned: boolean;
+
   @CreateDateColumn() createdDate: Date;
 
   @UpdateDateColumn() updatedDate: Date;
 
   @VersionColumn() version: number;
+
+  @OneToMany(() => Photo, photo => photo.user)
+  photos: Photo[];
 }
