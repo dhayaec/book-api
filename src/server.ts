@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 require('dotenv-safe').config();
 import * as connectRedis from 'connect-redis';
 import * as RateLimit from 'express-rate-limit';
