@@ -10,7 +10,6 @@
     "start": "rimraf ./dist && npm run compile && npm run copy && NODE_ENV=production node ./dist/",
     "lint": "tslint -c tslint.json 'src/**/*.ts' --fix",
     "test": " npm run compile && npm run copy && jest --watchAll",
-    "test-js": "jest --watchAll -c jest.js.config.js",
     "cover": "jest --coverage",
     "gen-types": "ts-node --files ./src/utils/createTypes.ts",
     "precommit": "lint-staged"
