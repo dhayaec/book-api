@@ -58,6 +58,6 @@ module.exports = [
     synchronize: true,
     logging: true,
     dropSchema: true,
-    entities: ['dist/entity/**/*.js']
+    entities: ['src/entity/**/*.ts']
   }
 ];

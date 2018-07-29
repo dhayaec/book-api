@@ -1,11 +1,12 @@
 import * as yup from 'yup';
 import { User } from '../../entity/User';
 import { ResolverMap } from '../../types/graphql-utils';
+import { passwordNotLongEnough } from '../../utils/messages';
 import { formatYupError } from '../../utils/userUtils';
 
 export const registerPasswordValidation = yup
   .string()
-  .min(6, 'password should be minimum 6 characters long')
+  .min(6, passwordNotLongEnough)
   .max(255)
   .required();
 
@@ -15,7 +16,7 @@ const schema = yup.object().shape({
     .min(3, 'email is not long enough')
     .max(255)
     .email('invalid email'),
-  password: registerPasswordValidation
+  password: registerPasswordValidation,
 });
 
 export const resolvers: ResolverMap = {
@@ -31,21 +32,21 @@ export const resolvers: ResolverMap = {
 
       const userAlreadyExists = await User.findOne({
         where: { email },
-        select: ['id']
+        select: ['id'],
       });
 
       if (userAlreadyExists) {
         return [
           {
             path: 'email',
-            message: 'email already registered'
-          }
+            message: 'email already registered',
+          },
         ];
       }
 
       const user = User.create({
         email,
-        password
+        password,
       });
 
       await user.save();
@@ -57,6 +58,6 @@ export const resolvers: ResolverMap = {
       //   );
       // }
       return null;
-    }
-  }
+    },
+  },
 };

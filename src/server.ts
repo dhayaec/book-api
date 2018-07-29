@@ -26,8 +26,8 @@ export async function startServer() {
       redis,
       url: request.protocol + '://' + request.get('host'),
       session: request.session,
-      req: request
-    })
+      req: request,
+    }),
   });
 
   server.express.use(helmet());
@@ -35,11 +35,11 @@ export async function startServer() {
   server.express.use(
     new RateLimit({
       store: new RateLimitRedisStore({
-        client: redis
+        client: redis,
       }),
       windowMs: 15 * 60 * 1000, // 15 minutes
       max: 100, // limit each IP to 100 requests per windowMs
-      delayMs: 0 // disable delaying - full speed until the max limit is reached
+      delayMs: 0, // disable delaying - full speed until the max limit is reached
     })
   );
 
@@ -47,7 +47,7 @@ export async function startServer() {
     session({
       store: new redisStore({
         client: redis as any,
-        prefix: redisSessionPrefix
+        prefix: redisSessionPrefix,
       }),
       name: 'qid',
       secret: SESSION_SECRET as string,
@@ -56,14 +56,12 @@ export async function startServer() {
       cookie: {
         httpOnly: true,
         secure: NODE_ENV === 'production',
-        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
-      }
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      },
     })
   );
 
-  if (NODE_ENV === 'test') {
-    await dbTest(true);
-  } else {
+  if (NODE_ENV !== 'test') {
     const connection = await db();
     await connection.runMigrations();
 

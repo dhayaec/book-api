@@ -3,16 +3,16 @@ import * as yup from 'yup';
 import { forgotPasswordPrefix } from '../../constants';
 import { User } from '../../entity/User';
 import { ResolverMap } from '../../types/graphql-utils';
-import { keyExpired, userNotFound } from '../../utils/messages';
+import { expiredKeyError, forgotPasswordLockedError } from '../../utils/messages';
 import {
   createForgotPasswordLink,
   forgotPasswordLockAccount,
-  formatYupError
+  formatYupError,
 } from '../../utils/userUtils';
 import { registerPasswordValidation } from './register.resolver';
 
 const schema = yup.object().shape({
-  newPassword: registerPasswordValidation
+  newPassword: registerPasswordValidation,
 });
 
 export const resolvers: ResolverMap = {
@@ -27,8 +27,8 @@ export const resolvers: ResolverMap = {
         return [
           {
             path: 'email',
-            message: userNotFound
-          }
+            message: forgotPasswordLockedError,
+          },
         ];
       }
 
@@ -50,8 +50,8 @@ export const resolvers: ResolverMap = {
         return [
           {
             path: 'key',
-            message: keyExpired
-          }
+            message: expiredKeyError,
+          },
         ];
       }
 
@@ -67,7 +67,7 @@ export const resolvers: ResolverMap = {
         { id: userId },
         {
           forgotPasswordLocked: false,
-          password: hashedPassword
+          password: hashedPassword,
         }
       );
 
@@ -76,6 +76,6 @@ export const resolvers: ResolverMap = {
       await Promise.all([updatePromise, deleteKeyPromise]);
 
       return null;
-    }
-  }
+    },
+  },
 };

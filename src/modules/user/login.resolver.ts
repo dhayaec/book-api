@@ -2,12 +2,13 @@ import * as bcrypt from 'bcryptjs';
 import { userSessionIdPrefix } from '../../constants';
 import { User } from '../../entity/User';
 import { ResolverMap } from '../../types/graphql-utils';
+import { forgotPasswordLockedError } from '../../utils/messages';
 
 const errorResponse = [
   {
     path: 'email',
-    message: 'invalid login'
-  }
+    message: 'invalid login',
+  },
 ];
 
 export const resolvers: ResolverMap = {
@@ -25,8 +26,8 @@ export const resolvers: ResolverMap = {
         return [
           {
             path: 'email',
-            message: 'forgotPasswordLocked'
-          }
+            message: forgotPasswordLockedError,
+          },
         ];
       }
 
@@ -42,6 +43,6 @@ export const resolvers: ResolverMap = {
       }
 
       return null;
-    }
-  }
+    },
+  },
 };
