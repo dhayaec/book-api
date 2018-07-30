@@ -9,7 +9,7 @@
     "dev": "npm run gen-types && NODE_ENV=development nodemon --exec ts-node src/index.ts",
     "start": "rimraf ./dist && npm run compile && npm run copy && NODE_ENV=production node ./dist/",
     "lint": "tslint -c tslint.json 'src/**/*.ts' --fix",
-    "test": "jest --watchAll --runInBand",
+    "test": "jest --watch --runInBand",
     "cover": "jest --coverage",
     "gen-types": "ts-node ./src/utils/createTypes.ts",
     "precommit": "lint-staged",

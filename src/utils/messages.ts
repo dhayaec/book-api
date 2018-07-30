@@ -4,3 +4,6 @@ export const forgotPasswordLockedError = 'account is locked';
 export const userNotFound = 'user not found';
 export const expiredKeyError = 'key expired';
 export const passwordNotLongEnough = 'password is not long enough';
+export const duplicateEmail = 'already taken';
+export const emailNotLongEnough = 'email must be at least 3 characters';
+export const invalidEmail = 'email must be a valid email';
