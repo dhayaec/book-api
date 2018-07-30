@@ -4,7 +4,7 @@ export const db = async () => {
   const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
   return createConnection({
     ...connectionOptions,
-    name: 'default',
+    name: 'default'
   });
 };
 
@@ -15,6 +15,6 @@ export const dbTest = async (resetDB: boolean = false) => {
     name: 'default',
     logging: false,
     synchronize: resetDB,
-    dropSchema: resetDB,
+    dropSchema: resetDB
   });
 };

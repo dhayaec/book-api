@@ -16,18 +16,20 @@ import { Photo } from './Photo';
 @Entity('users')
 @Unique(['email'])
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid') id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({ length: 255 })
   email: string;
 
-  @Column({ length: 20, default: '' })
+  @Column({ length: 20, nullable: true })
   username: string;
 
-  @Column({ length: 15, default: '' })
+  @Column('varchar', { length: 15, nullable: true })
   mobile: string;
 
-  @Column('text') password: string;
+  @Column('text')
+  password: string;
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
@@ -42,11 +44,14 @@ export class User extends BaseEntity {
   @Column({ default: false })
   isBanned: boolean;
 
-  @CreateDateColumn() createdDate: Date;
+  @CreateDateColumn()
+  createdDate: Date;
 
-  @UpdateDateColumn() updatedDate: Date;
+  @UpdateDateColumn()
+  updatedDate: Date;
 
-  @VersionColumn() version: number;
+  @VersionColumn()
+  version: number;
 
   @OneToMany(() => Photo, photo => photo.user)
   photos: Photo[];

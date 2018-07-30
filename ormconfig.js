@@ -58,6 +58,13 @@ module.exports = [
     synchronize: true,
     logging: true,
     dropSchema: true,
-    entities: ['src/entity/**/**.ts']
+    entities: ['src/entity/**/*.ts'],
+    migrations: ['src/migration/**/*.ts'],
+    subscribers: ['src/subscriber/**/*.ts'],
+    cli: {
+      entitiesDir: 'src/entity',
+      migrationsDir: 'src/migration',
+      subscribersDir: 'src/subscriber'
+    }
   }
 ];
