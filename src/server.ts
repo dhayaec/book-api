@@ -7,7 +7,7 @@ import { GraphQLServer } from 'graphql-yoga';
 import * as helmet from 'helmet';
 import * as Redis from 'ioredis';
 import * as RateLimitRedisStore from 'rate-limit-redis';
-import { db } from './connection';
+import { db, dbTest } from './connection';
 import { redisSessionPrefix } from './constants';
 import { User } from './entity/User';
 import { testEmail } from './routes/email';
@@ -15,10 +15,14 @@ import { genSchema } from './utils/schema-utils';
 
 const { SESSION_SECRET, NODE_ENV } = process.env;
 
-export async function startServer() {
-  const redisStore = connectRedis(session);
+const redisStore = connectRedis(session as any);
 
-  const redis = new Redis();
+const redis = new Redis();
+
+export async function startServer() {
+  if (process.env.NODE_ENV === 'test') {
+    await redis.flushall();
+  }
 
   const server = new GraphQLServer({
     schema: genSchema(),
@@ -86,7 +90,8 @@ export async function startServer() {
         (await userRepository.update({ id: existingUser.id }, { username }));
     }
   } else {
-    // await dbTest(true);
+    console.log('connection eb');
+    await dbTest(true);
   }
 
   server.express.get('/ping', (_, res) => res.json({ message: 'pong' }));
