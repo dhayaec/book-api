@@ -6,6 +6,7 @@
     "copyfiles",
     "ecmascript",
     "fastify",
+    "flushall",
     "gitignore",
     "graphiql",
     "lpush",
