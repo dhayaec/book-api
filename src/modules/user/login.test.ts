@@ -18,8 +18,8 @@ beforeAll(async () => {
   server = await startServer();
 });
 
-afterAll(() => {
-  server.close();
+afterAll(async () => {
+  await server.close();
 });
 
 let conn: Connection;

@@ -18,7 +18,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  server.close();
+  await server.close();
 });
 
 faker.seed(Date.now() + 5);
@@ -32,7 +32,7 @@ beforeAll(async () => {
   conn = await dbTest();
 });
 afterAll(async () => {
-  conn.close();
+  await conn.close();
 });
 
 describe('Register user', async () => {

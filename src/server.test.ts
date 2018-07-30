@@ -7,8 +7,8 @@ beforeAll(async () => {
   server = await startServer();
 });
 
-afterAll(() => {
-  server.close();
+afterAll(async () => {
+  await server.close();
 });
 
 describe('server', () => {

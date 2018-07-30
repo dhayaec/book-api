@@ -17,6 +17,13 @@ import {
 } from '../../utils/userUtils';
 
 let server: Server;
+beforeAll(async () => {
+  server = await startServer();
+});
+
+afterAll(async () => {
+  await server.close();
+});
 
 export const redis = new Redis();
 faker.seed(Date.now() + 0);
@@ -28,7 +35,6 @@ let conn: Connection;
 let userId: string;
 
 beforeAll(async () => {
-  server = await startServer();
   conn = await dbTest(true);
   const user = await User.create({
     email,
@@ -39,7 +45,6 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await server.close();
   await conn.close();
 });
 
