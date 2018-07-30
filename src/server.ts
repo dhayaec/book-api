@@ -7,7 +7,7 @@ import { GraphQLServer } from 'graphql-yoga';
 import * as helmet from 'helmet';
 import * as Redis from 'ioredis';
 import * as RateLimitRedisStore from 'rate-limit-redis';
-import { db, dbTest } from './connection';
+import { db } from './connection';
 import { redisSessionPrefix } from './constants';
 import { User } from './entity/User';
 import { testEmail } from './routes/email';

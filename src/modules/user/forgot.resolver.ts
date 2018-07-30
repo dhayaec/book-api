@@ -3,7 +3,10 @@ import * as yup from 'yup';
 import { forgotPasswordPrefix } from '../../constants';
 import { User } from '../../entity/User';
 import { ResolverMap } from '../../types/graphql-utils';
-import { expiredKeyError, forgotPasswordLockedError } from '../../utils/messages';
+import {
+  expiredKeyError,
+  forgotPasswordLockedError,
+} from '../../utils/messages';
 import {
   createForgotPasswordLink,
   forgotPasswordLockAccount,
@@ -20,7 +23,7 @@ export const resolvers: ResolverMap = {
     sendForgotPasswordEmail: async (
       _,
       { email }: GQL.ISendForgotPasswordEmailOnMutationArguments,
-      { redis }
+      { redis },
     ) => {
       const user = await User.findOne({ where: { email } });
       if (!user) {
@@ -41,7 +44,7 @@ export const resolvers: ResolverMap = {
     forgotPasswordChange: async (
       _,
       { newPassword, key }: GQL.IForgotPasswordChangeOnMutationArguments,
-      { redis }
+      { redis },
     ) => {
       const redisKey = `${forgotPasswordPrefix}${key}`;
 
@@ -68,7 +71,7 @@ export const resolvers: ResolverMap = {
         {
           forgotPasswordLocked: false,
           password: hashedPassword,
-        }
+        },
       );
 
       const deleteKeyPromise = redis.del(redisKey);

@@ -13,7 +13,8 @@
     "import-spacing": true,
     "prefer-object-spread": true,
     "space-within-parens": true,
-    "object-curly-spacing": true
+    "object-curly-spacing": true,
+    "trailing-comma": true
   },
   "rulesDirectory": []
 }

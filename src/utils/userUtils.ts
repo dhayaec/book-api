@@ -35,9 +35,7 @@ export const removeAllUsersSessions = async (userId: string, redis: Redis) => {
 };
 
 export const formatYupError = (err: ValidationError) => {
-  const errors: [{ path: string; message: string }] = [
-    { path: '', message: '' }
-  ];
+  const errors: [{ path: string; message: string }] = [] as any;
   err.inner.forEach(e => {
     errors.push({
       path: e.path,
