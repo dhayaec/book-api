@@ -1,7 +1,5 @@
 import * as faker from 'faker';
 import { Server } from 'net';
-import { Connection } from 'typeorm';
-import { dbTest } from '../../connection';
 import { User } from '../../entity/User';
 import { startServer } from '../../server';
 import {
@@ -26,14 +24,6 @@ const email = faker.internet.email();
 const password = faker.internet.password();
 
 const client = new TestClient(process.env.TEST_HOST as string);
-
-let conn: Connection;
-beforeAll(async () => {
-  conn = await dbTest();
-});
-afterAll(async () => {
-  await conn.close();
-});
 
 describe('Register user', async () => {
   it('check for duplicate emails', async () => {

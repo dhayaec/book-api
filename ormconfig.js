@@ -5,7 +5,9 @@ const {
   DB_PASS,
   DB_NAME,
   DB_TYPE,
-  DB_NAME_TEST
+  DB_NAME_TEST,
+  ROOT_USER,
+  ROOT_PASS
 } = process.env;
 
 module.exports = [
@@ -63,5 +65,13 @@ module.exports = [
       migrationsDir: 'src/migration',
       subscribersDir: 'src/subscriber'
     }
+  },
+  {
+    name: 'root',
+    type: DB_TYPE,
+    host: DB_HOST,
+    port: DB_PORT,
+    username: ROOT_USER,
+    password: ROOT_PASS
   }
 ];

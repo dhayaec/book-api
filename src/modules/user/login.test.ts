@@ -1,7 +1,5 @@
 import * as faker from 'faker';
 import { Server } from 'net';
-import { Connection } from 'typeorm';
-import { dbTest } from '../../connection';
 import { User } from '../../entity/User';
 import { startServer } from '../../server';
 import { confirmEmailError, invalidLogin } from '../../utils/messages';
@@ -20,16 +18,6 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await server.close();
-});
-
-let conn: Connection;
-
-beforeAll(async () => {
-  conn = await dbTest(true);
-});
-
-afterAll(async () => {
-  await conn.close();
 });
 
 const loginExpectError = async (e: string, p: string, errMsg: string) => {

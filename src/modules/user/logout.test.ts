@@ -1,7 +1,6 @@
 import * as faker from 'faker';
 import { Server } from 'net';
 import { Connection } from 'typeorm';
-import { dbTest } from '../../connection';
 import { User } from '../../entity/User';
 import { startServer } from '../../server';
 import { TestClient } from '../../utils/TestClient';
@@ -22,17 +21,12 @@ const password = faker.internet.password();
 
 let userId: string;
 beforeAll(async () => {
-  conn = await dbTest();
   const user = await User.create({
     email,
     password,
     confirmed: true
   }).save();
   userId = user.id;
-});
-
-afterAll(async () => {
-  await conn.close();
 });
 
 describe('logout', () => {

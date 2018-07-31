@@ -2,7 +2,6 @@ import * as faker from 'faker';
 import * as Redis from 'ioredis';
 import { Server } from 'net';
 import { Connection } from 'typeorm';
-import { dbTest } from '../../connection';
 import { User } from '../../entity/User';
 import { startServer } from '../../server';
 import {
@@ -35,17 +34,12 @@ let conn: Connection;
 let userId: string;
 
 beforeAll(async () => {
-  conn = await dbTest(true);
   const user = await User.create({
     email,
     password,
     confirmed: true
   }).save();
   userId = user.id;
-});
-
-afterAll(async () => {
-  await conn.close();
 });
 
 describe('forgot password', () => {
