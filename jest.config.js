@@ -14,6 +14,8 @@ module.exports = {
     '!src/types/**/*.{ts,tsx}',
     '!src/utils/createTypes.ts',
     '!**/node_modules/**',
-    '!**/vendor/**'
+    '!**/vendor/**',
+    '!src/migration/**',
+    '!src/subscriber/**'
   ]
 };
