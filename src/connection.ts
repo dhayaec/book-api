@@ -13,7 +13,6 @@ export const dbTest = async (resetDB: boolean = false) => {
   return createConnection({
     ...connectionOptions,
     name: 'default',
-    logging: true,
     synchronize: resetDB,
     dropSchema: resetDB
   });
