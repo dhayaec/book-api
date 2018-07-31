@@ -16,6 +16,8 @@ module.exports = {
     '!**/node_modules/**',
     '!**/vendor/**',
     '!src/migration/**',
-    '!src/subscriber/**'
+    '!src/subscriber/**',
+    '!src/setup.ts',
+    '!src/index.ts',
   ]
 };
