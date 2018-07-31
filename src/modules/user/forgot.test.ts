@@ -1,7 +1,6 @@
 import * as faker from 'faker';
 import * as Redis from 'ioredis';
 import { Server } from 'net';
-import { Connection } from 'typeorm';
 import { User } from '../../entity/User';
 import { startServer } from '../../server';
 import {
@@ -30,7 +29,6 @@ const email = faker.internet.email();
 const password = faker.internet.password();
 const newPassword = faker.internet.password();
 
-let conn: Connection;
 let userId: string;
 
 beforeAll(async () => {

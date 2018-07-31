@@ -1,6 +1,5 @@
 import * as faker from 'faker';
 import { Server } from 'net';
-import { Connection } from 'typeorm';
 import { User } from '../../entity/User';
 import { startServer } from '../../server';
 import { TestClient } from '../../utils/TestClient';
@@ -14,7 +13,6 @@ afterAll(async () => {
   await server.close();
 });
 
-let conn: Connection;
 faker.seed(Date.now() + 2);
 const email = faker.internet.email();
 const password = faker.internet.password();
